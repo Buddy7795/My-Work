@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Dog Image</title>
+<style>
+  body { font-family: Arial; text-align: center; padding: 50px; }
+  img { max-width: 400px; margin-top: 20px; border-radius: 10px; }
+  button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>Random Dog Image Generator</h1>
+<button id="fetchDog">Fetch Dog Image</button>
+<div>
+  <img id="dogImage" src="" alt="Random Dog">
+</div>
+
+<script>
+  const button = document.getElementById('fetchDog');
+  const dogImage = document.getElementById('dogImage');
+
+  button.addEventListener('click', () => {
+    fetch('https://dog.ceo/api/breeds/image/random')
+      .then(response => response.json())
+      .then(data => {
+        dogImage.src = data.message;
+      })
+      .catch(err => console.error(err));
+  });
+</script>
+
+</body>
+</html>
